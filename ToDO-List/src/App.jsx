@@ -51,6 +51,8 @@ function init(initialState) {
   return initialState;
 }
 const App = () => {
+  
+
   const [todos, dispatch] = useReducer(reducer, initialState, init);
   const handleToggleComplete = (id) => {
     dispatch({ type: TODOS_ACTIONS.TOGGLE_COMPLETE, payload: id });
@@ -75,8 +77,8 @@ const App = () => {
       <input type="text" onBlur={(e) => dispatch({ type: TODOS_ACTIONS.ADD_TASK, payload: e.target.value })}
       />
       {/*here on click action form is dispatched on payload :initialstate. */}
-      <button onClick={(evt) => dispatch({ type: TODOS_ACTIONS.ADD_TASK, payload: evt.target.value })}>ADD</button>
-      <button onClick={() => dispatch({ type: TODOS_ACTIONS.RESET_TODOS, payload: initialState })}>RESET</button>
+      <button style={{ backgroundColor: 'lightgrey' }}onClick={(evt) => dispatch({ type: TODOS_ACTIONS.ADD_TASK, payload: evt.target.value })}>ADD</button>
+      <button style={{ backgroundColor: 'lightgrey' }}onClick={() => dispatch({ type: TODOS_ACTIONS.RESET_TODOS, payload: initialState })}>RESET</button>
       <hr />
       {todos.map(todo => (
         <li key={todo.id}>
@@ -84,8 +86,8 @@ const App = () => {
           {todo.editing ? (
             <>
               <input type="text" value={todo.name} onChange={(e) => handleSaveEdit(todo.id, e.target.value)} />
-              <button onClick={() => handleSaveEdit(todo.id, todo.name)}>Save</button>
-              <button onClick={() => handleCancelEdit(todo.id)}>Cancel</button>
+              <button style={{ backgroundColor: 'lightgrey' }}onClick={() => handleSaveEdit(todo.id, todo.name)}>Save</button>
+              <button style={{ backgroundColor: 'lightgrey' }}onClick={() => handleCancelEdit(todo.id)}>Cancel</button>
             </>
           ) : (
             <>
@@ -102,7 +104,7 @@ const App = () => {
                 >
                   Edit
                 </button>
-                <button onCick={() => dispatch({ type: TODOS_ACTIONS.DELETE_TASK, payload: todo.id })} >DELETE</button>
+                <button style={{ backgroundColor: 'lightgrey' }} onClick={() => dispatch({ type: TODOS_ACTIONS.DELETE_TASK, payload: todo.id })} >DELETE</button>
               </span>
               </>
           )}

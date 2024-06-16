@@ -1,3 +1,43 @@
 
 
-
+body {
+    background-color:darkslategrey;
+    margin-right: 300px;
+}
+.App {
+    font-family: Arial, sans-serif;
+    background-color: darkslategrey;
+    padding: 20px;
+    max-width: 600px;
+    margin-right:300px;;
+  }
+  
+  .todo-list {
+    list-style-type: none;
+    color: black;
+    margin-right: 400px;
+    padding: 0;
+  }
+  .button{
+    color:grey;
+  }
+  
+  .todo-item {
+    background-color:gray;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .todo-item.completed {
+    text-decoration: line-through;
+  }
+  
+  .todo-item.editing {
+    background-color:black;
+  }
+  
+  .todo-item input[type="checkbox"] {
+    margin-right: 200px;
+  }
