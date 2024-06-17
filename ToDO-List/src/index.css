@@ -14,9 +14,9 @@
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+  font-weight: 600;
+  color:black;
+  text-decoration:solid;
 }
 a:hover {
   color: #535bf2;
@@ -37,8 +37,8 @@ h1 {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  /* border: 1px solid transparent; */
+  padding: 0.6em 1.0em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -63,6 +63,6 @@ button:focus-visible {
     color: #747bff;
   }
   button {
-    background-color: #f9f9f9;
+    background-color:gray;
   }
 }

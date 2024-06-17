@@ -1,7 +1,13 @@
-
+#root{
+ max-width: 1280px;
+ margin:auto;
+ margin-top:50px;
+ padding:1rem;
+ outline:auto;
+}
 
 body {
-    background-color:darkslategrey;
+    background-color:rgb(13, 182, 182);
     margin-right: 300px;
 }
 .App {
@@ -35,7 +41,7 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
-  .todo-item.completed {
+  .todo-item.complete {
     text-decoration: line-through;
   }
   
