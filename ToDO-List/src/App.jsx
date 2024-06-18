@@ -107,7 +107,8 @@ const App = () => {
   };
   const handleSaveEdit = (id, newTask) => {
     dispatch({ type: TODOS_ACTIONS.SAVE_EDIT, payload: { id, Task: newTask } });
-    dispatch(alert(`Task with ID ${id} and title "${newTask}" saved successfully!`));
+    (alert(`Task with ID ${id} and title "${newTask}" saved successfully!`));
+    dispatch({type:TODOS_ACTIONS.RESET_TODOS,payload:newTask});
   };
   const handleCancelEdit = (id, newTask) => {
     dispatch({ type: TODOS_ACTIONS.CANCEL_EDIT, payload: { id, Task } })
@@ -150,7 +151,6 @@ const App = () => {
                   Edit
                 </button>
                 <button  onClick={() => dispatch({ type: TODOS_ACTIONS.DELETE_TASK, payload: todo.id })} >DELETE</button>
-                {/* <button style={{ backgroundColor: 'lightgrey' }} onClick={() => dispatch({ type: TODOS_ACTIONS.DELETE_TASK, payload: todo.id })} >DELETE</button> */}
 
               </span>
               {/* <span style={{ textDecoration: todo.complete ? 'line-through' : 'none' }}>

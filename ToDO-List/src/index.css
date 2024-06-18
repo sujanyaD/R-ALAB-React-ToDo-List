@@ -64,5 +64,6 @@ button:focus-visible {
   }
   button {
     background-color:gray;
+    margin-right: auto;
   }
 }
