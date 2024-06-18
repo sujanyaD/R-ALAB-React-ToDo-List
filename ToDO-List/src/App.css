@@ -1,5 +1,5 @@
 #root{
- max-width: 1280px;
+ max-width: auto;
  margin:auto;
  margin-top:50px;
  padding:1rem;
@@ -12,12 +12,10 @@ body {
 }
 .App {
     font-family: Georgia, 'Times New Roman', Times, serif;
-    background-color: rgb(1, 19, 19);
-    
+    background-color: rgb(1, 19, 19); 
     max-width: 600px;
     margin:auto;
-  }
-  
+  }  
   .todo-list {
     list-style-type: none;
     color: black;
@@ -30,17 +28,15 @@ body {
   }
   .button{
     color:grey;
-   
-  }
-  
+    margin-right: auto;
+  }  
   .todo-item {
     background-color:gray;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
+  } 
   .todo-item.complete {
     text-decoration: line-through;
   }

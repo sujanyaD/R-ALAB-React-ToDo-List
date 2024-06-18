@@ -38,90 +38,7 @@ const initialState = [
     "Task": "qui ullam ratione quibusdam voluptatem quia omnis",
     "complete": false
   },
-  {
-    "userId": 1,
-    "id": 7,
-    "Task": "illo expedita consequatur quia in",
-    "complete": false
-  },
-  {
-    "userId": 1,
-    "id": 8,
-    "Task": "quo adipisci enim quam ut ab",
-    "complete": true
-  },
-  {
-    "userId": 1,
-    "id": 9,
-    "Task": "molestiae perspiciatis ipsa",
-    "complete": false
-  },
-  {
-    "userId": 1,
-    "id": 10,
-    "Task": "illo est ratione doloremque quia maiores aut",
-    "complete": true
-  },
-  {
-    "userId": 1,
-    "id": 11,
-    "Task": "vero rerum temporibus dolor",
-    "complete": true
-  },
-  {
-    "userId": 1,
-    "id": 12,
-    "Task": "ipsa repellendus fugit nisi",
-    "complete": true
-  },
-  {
-    "userId": 1,
-    "id": 13,
-    "Task": "et doloremque nulla",
-    "complete": false
-  },
-  {
-    "userId": 1,
-    "id": 14,
-    "Task": "repellendus sunt dolores architecto voluptatum",
-    "complete": true
-  },
-  {
-    "userId": 1,
-    "id": 15,
-    "Task": "ab voluptatum amet voluptas",
-    "complete": true
-  },
-  {
-    "userId": 1,
-    "id": 16,
-    "Task": "accusamus eos facilis sint et aut voluptatem",
-    "complete": true
-  },
-  {
-    "userId": 1,
-    "id": 17,
-    "Task": "quo laboriosam deleniti aut qui",
-    "complete": true
-  },
-  {
-    "userId": 1,
-    "id": 18,
-    "Task": "dolorum est consequatur ea mollitia in culpa",
-    "complete": false
-  },
-  {
-    "userId": 1,
-    "id": 19,
-    "Task": "molestiae ipsa aut voluptatibus pariatur dolor nihil",
-    "complete": true
-  },
-  {
-    "userId": 1,
-    "id": 20,
-    "Task": "ullam nobis libero sapiente ad optio sint",
-    "complete": true
-  }
+
 ];
 
 const TODOS_ACTIONS = {
@@ -138,7 +55,7 @@ const TODOS_ACTIONS = {
 function reducer(state, action) {
   switch (action.type) {
     case TODOS_ACTIONS.ADD_TODO:
-      return [...state,{id:Date.now(),Task:action.payload,complete:false,editing:false}]
+      return [...state, { id: Date.now(), Task: action.payload, complete: false, editing: true }]
     case TODOS_ACTIONS.DELETE_TASK:
       return state.filter(d => d.id !== action.payload)
     case TODOS_ACTIONS.RESET_TODOS:
@@ -166,11 +83,16 @@ function init(initialState) {
 
   return initialState;
 }
+
 const App = () => {
+  // const showAlert=()=>{
+  //   alert(`Task with ID ${id} and title "${Task}" saved successfully!`);
+  };
   //useReducer Hook
   const [todos, dispatch] = useReducer(reducer, initialState, init);
   //useState Hook
   const [newTodo, setNewTodo] = useState('');
+
   const handleAdd = () => {
     if (newTodo.trim() !== '') {
       dispatch({ type: TODOS_ACTIONS.ADD_TODO, payload: newTodo });
@@ -183,13 +105,12 @@ const App = () => {
   const handleStartEdit = (id) => {
     dispatch({ type: TODOS_ACTIONS.EDIT_TODO, payload: id });
   };
-
   const handleSaveEdit = (id, newTask) => {
     dispatch({ type: TODOS_ACTIONS.SAVE_EDIT, payload: { id, Task: newTask } });
-    
+    dispatch(alert(`Task with ID ${id} and title "${newTask}" saved successfully!`));
   };
-  const handleCancelEdit=(id,newTask)=>{
-dispatch({type:TODOS_ACTIONS.CANCEL_EDIT,payload:{id,Task}})
+  const handleCancelEdit = (id, newTask) => {
+    dispatch({ type: TODOS_ACTIONS.CANCEL_EDIT, payload: { id, Task } })
   };
   return (
     <>
@@ -198,10 +119,9 @@ dispatch({type:TODOS_ACTIONS.CANCEL_EDIT,payload:{id,Task}})
         <input type="text" placeholder="Enter new todo" value={newTodo.Task} onChange={(e) => setNewTodo(e.target.value)} />
         <button onClick={handleAdd}>Add</button>
       </div>
-      {/* <input type="text" onBlur={(e) => dispatch({ type: TODOS_ACTIONS.ADD_TASK, payload: e.target.value })}   /> */}
 
       {/*here on click action form is dispatched on payload :initialstate. */}
-      <button style={{ backgroundColor: 'lightgrey' }} onClick={(event) => dispatch({ type: TODOS_ACTIONS.RESET_TODOS, payload: event.target.value })}>RESET</button>
+      <button  onClick={(event) => dispatch({ type: TODOS_ACTIONS.RESET_TODOS, payload: event.target.value })}>RESET</button>
       <hr />
       {/* using map method to iterate over each todo object in todos array */}
       {todos.map(todo => (
@@ -210,9 +130,9 @@ dispatch({type:TODOS_ACTIONS.CANCEL_EDIT,payload:{id,Task}})
           {/* using ternary operator to check condition */}
           {todo.editing ? (
             <>
-              <input type="text" value={todo.Task} onChange={(e) => handleSaveEdit(todo.id, e.target.value)} />
-              <button style={{ backgroundColor: 'lightgrey' }}onClick={() => handleSaveEdit(todo.id, todo.Task)}>Save</button>
-              <button style={{ backgroundColor: 'lightgrey' }}onClick={() => handleCancelEdit(todo.id)}>Cancel</button>
+              <input type="text" value={todo.Task} onChange={(e) => handleStartEdit(todo.id, e.target.value)} />
+              <button onClick={() => handleSaveEdit(todo.id, todo.Task)}>Save</button>
+              <button  onClick={() => handleCancelEdit(todo.id)}>Cancel</button>
             </>
           ) : (
             <>
@@ -229,8 +149,13 @@ dispatch({type:TODOS_ACTIONS.CANCEL_EDIT,payload:{id,Task}})
                 >
                   Edit
                 </button>
-                <button style={{ backgroundColor: 'lightgrey' }} onClick={() => dispatch({ type: TODOS_ACTIONS.DELETE_TASK, payload: todo.id })} >DELETE</button>
+                <button  onClick={() => dispatch({ type: TODOS_ACTIONS.DELETE_TASK, payload: todo.id })} >DELETE</button>
+                {/* <button style={{ backgroundColor: 'lightgrey' }} onClick={() => dispatch({ type: TODOS_ACTIONS.DELETE_TASK, payload: todo.id })} >DELETE</button> */}
+
               </span>
+              {/* <span style={{ textDecoration: todo.complete ? 'line-through' : 'none' }}>
+                  {todo.Task}
+                </span> */}
             </>
           )}
         </li>
