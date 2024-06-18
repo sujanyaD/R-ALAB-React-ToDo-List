@@ -85,8 +85,8 @@ function init(initialState) {
 }
 
 const App = () => {
-  // const showAlert=()=>{
-  //   alert(`Task with ID ${id} and title "${Task}" saved successfully!`);
+  const showAlert=()=>{
+    alert(`Task with ID ${id} and title "${Task}" saved successfully!`);
   };
   //useReducer Hook
   const [todos, dispatch] = useReducer(reducer, initialState, init);
@@ -163,4 +163,5 @@ const App = () => {
     </>
   );
 };
+
 export default App
